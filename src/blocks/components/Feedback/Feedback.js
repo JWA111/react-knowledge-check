@@ -1,56 +1,54 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './Feedback.css';
 
-export class Feedback extends Component {
-    getFeedbackMessage = () => {
-        if (this.props.isCorrect) {
-            return this.props.correctMessage;
+export let Feedback = (props) => {
+    const getFeedbackMessage = () => {
+        if (props.isCorrect) {
+            return props.correctMessage;
         } else {
-            return this.props.hint;
+            return props.hint;
         }
     }
 
-    getIndicatorClass = () => {
-        if (this.props.isCorrect) {
+    const getIndicatorClass = () => {
+        if (props.isCorrect) {
             return 'fa fa-check';
         } else {
             return 'fa fa-times';
         }
     }
 
-    triggerReset = () => {
-        if (typeof this.props.onReset === 'function') {
-            this.props.onReset();
+    const triggerReset = () => {
+        if (typeof props.onReset === 'function') {
+            props.onReset();
         }
     }
 
-    render = () => {
-        let status;
-        if (this.props.isCorrect) {
-            status = 'Correct';
-        } else {
-            status = 'Incorrect';
-        }
+    let status;
+    if (props.isCorrect) {
+        status = 'Correct';
+    } else {
+        status = 'Incorrect';
+    }
 
-        return (
-            <div className="feedback">
-                <div className="feedback-indicator">
-                    <i className={this.getIndicatorClass()} />
-                </div>
-                <div className="status">
-                    {status}
-                </div>
-                <div className="feedback-message">
-                    {this.getFeedbackMessage()}
-                </div>
-                <div
-                    className="retry"
-                    onClick={this.triggerReset}
-                >
-                    <span className="fa fa-repeat">&nbsp;TAKE AGAIN </span>
-                </div>
+    return (
+        <div className="feedback">
+            <div className="feedback-indicator">
+                <i className={getIndicatorClass()} />
             </div>
-        );
-    }
+            <div className="status">
+                {status}
+            </div>
+            <div className="feedback-message">
+                {getFeedbackMessage()}
+            </div>
+            <div
+                className="retry"
+                onClick={triggerReset}
+            >
+                <span className="fa fa-repeat">&nbsp;TAKE AGAIN </span>
+            </div>
+        </div>
+    );
 }

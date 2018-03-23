@@ -1,46 +1,46 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Content from './Content/Content'
 import Option from './Option/Option';
 import './Question.css';
 
-export class Question extends Component {
-    isCorrect = (option) => {
-        return this.props.correctOption.value === option.value;
+export let Question = (props) => {
+    const isCorrect = (option) => {
+        return props.correctOption.value === option.value;
     }
 
-    isSelected = (option) => {
+    const isSelected = (option) => {
         let selected = false;
-        if (this.props.selectedOption && this.props.selectedOption.value === option.value) {
+        if (props.selectedOption && props.selectedOption.value === option.value) {
             selected = true;
         }
 
         return selected;
     }
 
-    isSelectedAnswer = (option) => {
-        return this.props.showAnswer && this.isSelected(option);
+    const isSelectedAnswer = (option) => {
+        return props.showAnswer && isSelected(option);
     }
 
-    isDisabled = (option) => {
-        if (this.props.showAnswer) {
+    const isDisabled = (option) => {
+        if (props.showAnswer) {
             return true;
         } else {
             return false;
         }
     }
 
-    handleSelection = (option) => {
-        this.props.onSelect(option);
+    const handleSelection = (option) => {
+        props.onSelect(option);
     }
 
-    getOptionIconClass = (option) => {
+    const getOptionIconClass = (option) => {
         let iconClass = 'fa ';  
-        if (this.props.showAnswer && this.isCorrect(option)) {
+        if (props.showAnswer && isCorrect(option)) {
             iconClass += 'fa-check' 
-        } else if (this.props.showAnswer) {
+        } else if (props.showAnswer) {
             iconClass += 'fa-times' 
-        } else if (this.isSelected(option)) {
+        } else if (isSelected(option)) {
             iconClass += 'fa-square';
         } else {
             iconClass += 'fa-square-o';
@@ -49,7 +49,7 @@ export class Question extends Component {
         return iconClass;
     }
 
-    getOptionElements = (options) => {
+    const getOptionElements = (options) => {
         let optionElements = [];
         for (var i = 0; i < options.length; i++) {
             let option = options[i];
@@ -57,10 +57,10 @@ export class Question extends Component {
             optionElements.push(
                 <Option
                     option={option}
-                    onClick={this.handleSelection}
-                    isSelectedAnswer={this.isSelectedAnswer(option)}
-                    disabled={this.isDisabled(option)}
-                    iconClass={this.getOptionIconClass(option)}
+                    onClick={handleSelection}
+                    isSelectedAnswer={isSelectedAnswer(option)}
+                    disabled={isDisabled(option)}
+                    iconClass={getOptionIconClass(option)}
                     key={i}
                 />
             );
@@ -69,23 +69,21 @@ export class Question extends Component {
         return optionElements;
     }
 
-    render = () => {
-        const question = this.props.question;
+    const question = props.question;
 
-        return (
-            <div className="question">
-                <div className="question-prompt">
-                    {question.prompt}
-                </div>
-                {question.content ? 
-                    <div className="question-content">
-                        <Content type={question.content.type} options={question.content.options}/>
-                    </div>
-                : null}
-                <div className="question-options">
-                    {this.getOptionElements(question.options)}
-                </div>
+    return (
+        <div className="question">
+            <div className="question-prompt">
+                {question.prompt}
             </div>
-        )
-    }
+            {question.content ? 
+                <div className="question-content">
+                    <Content type={question.content.type} options={question.content.options}/>
+                </div>
+            : null}
+            <div className="question-options">
+                {getOptionElements(question.options)}
+            </div>
+        </div>
+    );
 }
