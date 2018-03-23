@@ -1,0 +1,62 @@
+.knowledge-check-container {
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: content-box;
+    max-width: 92rem;
+    padding: 1rem;
+}
+
+.knowledge-check-box {
+    border-radius: 2px;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    padding: 1rem;
+}
+
+.knowledge-check-body {
+    padding-top: 1rem;
+    font-size: 80%;
+    text-align: left;
+    padding: 0.5rem;
+}
+
+.knowledge-check-footer {
+    text-align: center;
+}
+
+.knowledge-check-submit  {
+    cursor: pointer;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    line-height: 2rem;
+    letter-spacing: .05rem;
+    border: 2px solid transparent;
+    border-radius: 2rem;
+    min-width: 10rem;
+    box-sizing: border-box;
+    background-color: #848a8e;
+    color: #fff;
+    transition: background .3s, color .3s, opacity .3s;
+    outline: none;
+}
+
+.knowledge-check-submit:disabled {
+    background-color: #ccc;
+    pointer-events: none;
+}
+
+@media (min-width: 30rem) {
+  .knowledge-check-container {
+    padding: 3rem;
+  }
+
+  .knowledge-check-box {
+      padding: 2rem;
+  }
+}
+
+@media (min-width: 60rem) {
+  .knowledge-check-container {
+    max-width: 55rem;
+  }
+}
