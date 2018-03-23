@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Knowledge Check Demo</h1>
+          <h1 className="App-title">Knowledge Check Block Demo</h1>
         </header>
         <div className="App-intro">
           {SimpleQuestionaire.questions.map((question) => {
