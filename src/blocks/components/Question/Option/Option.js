@@ -1,50 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './Option.css';
 
-export default class Option extends Component {
-    getOptionClass = () => {
-        let className = 'option';
-        if (this.props.isCorrect === null) {
-            className += ' allow-hover';
-        } else if (this.props.isSelected) {
-            className += ' selected-answered'
-        }
-
-        return className;
+let Option = (props) => {
+    let optionClass = 'option';
+    if (!props.disabled) {
+        optionClass += ' allow-hover'
     }
 
-    getIcon = () => {
-        let iconClass = 'fa ';  
-        if (this.props.isCorrect === true) {
-            iconClass += 'fa-check' 
-        } else if (this.props.isCorrect !== null) {
-            iconClass += 'fa-times' 
-        } else if (this.props.isSelected) {
-            iconClass += 'fa-square';
-        } else {
-            iconClass += 'fa-square-o';
-        }
-
-        return <i className={iconClass}/>;
+    if (props.isSelectedAnswer) {
+        optionClass += ' selected-answered'
     }
 
-    selectOption = () => {
-        if (this.props.isCorrect === null) {
-            this.props.onClick(this.props.option);
-        }
+    let onClick;
+    if (props.disabled) {
+        onClick = () => {}
+    } else {
+        onClick = () => {
+            props.onClick(props.option);
+        };
     }
 
-    render = () => {
-        const option = this.props.option;
-
-        return (
-            <div
-                className={this.getOptionClass()}
-                onClick={this.selectOption}
-            >
-                {this.getIcon()} {option.text}
-            </div>
-        );
-    }
-}
+    return (
+        <div className={optionClass} onClick={onClick}>
+            <i className={props.iconClass}/>{props.option.text}
+        </div>
+    );
+} 
+export default Option;

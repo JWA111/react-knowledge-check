@@ -19,7 +19,7 @@ class App extends Component {
         <div className="App-intro">
           <KnowledgeCheck
             questionaire={SimpleQuestionaire}
-            correct={SimpleQuestionaireAnswer}
+            correctOption={SimpleQuestionaireAnswer}
           />
         </div>
       </div>

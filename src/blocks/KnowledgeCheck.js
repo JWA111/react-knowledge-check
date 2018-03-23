@@ -12,22 +12,22 @@ export default class KnowledgeCheck extends Component {
         super(props);
 
         this.state = {
-            selected: null,
-            submitted: false
+            selectedOption: null,
+            showAnswer: false
         };
     }
 
     getFooter = () => {
-        if (!this.state.submitted) {
+        if (!this.state.showAnswer) {
             return (
                 <button
                     className="knowledge-check-submit"
-                    disabled={this.state.selected === null}
+                    disabled={this.state.selectedOption === null}
                     onClick={this.handleSubmit}
                 >SUBMIT</button>
             );
         } else {
-            let isCorrect = this.state.selected.value === this.props.correct.value;
+            let isCorrect = this.state.selectedOption.value === this.props.correctOption.value;
             return (
                 <Feedback
                     isCorrect={isCorrect}
@@ -41,21 +41,21 @@ export default class KnowledgeCheck extends Component {
 
     handleReset = () => {
         this.setState({
-            selected: null,
-            submitted: false
+            selectedOption: null,
+            showAnswer: false
         });
     }
 
     handleSelection = (option) => {
         this.setState((state) => {
-            state.selected = option;
+            state.selectedOption = option;
             return state;
         })
     }
 
     handleSubmit = () => {
         this.setState((state) => {
-            state.submitted = true;
+            state.showAnswer = true;
             return state;
         });
     }
@@ -69,9 +69,9 @@ export default class KnowledgeCheck extends Component {
                     <div className="knowledge-check-body">
                         <Question
                             question={questionaire.questions[0]}
-                            selected={this.state.selected}
-                            correct={this.props.correct}
-                            showAnswer={this.state.submitted}
+                            selectedOption={this.state.selectedOption}
+                            correctOption={this.props.correctOption}
+                            showAnswer={this.state.showAnswer}
                             onSelect={this.handleSelection}
                         />
                     </div>

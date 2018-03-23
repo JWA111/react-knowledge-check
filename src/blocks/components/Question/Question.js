@@ -5,10 +5,27 @@ import './Question.css';
 
 export class Question extends Component {
     isCorrect = (option) => {
-        if (this.props.showAnswer && this.props.selected !== null) {
-            return this.props.correct.value === option.value;
+        return this.props.correctOption.value === option.value;
+    }
+
+    isSelected = (option) => {
+        let selected = false;
+        if (this.props.selectedOption && this.props.selectedOption.value === option.value) {
+            selected = true;
+        }
+
+        return selected;
+    }
+
+    isSelectedAnswer = (option) => {
+        return this.props.showAnswer && this.isSelected(option);
+    }
+
+    isDisabled = (option) => {
+        if (this.props.showAnswer) {
+            return true;
         } else {
-            return null;
+            return false;
         }
     }
 
@@ -16,20 +33,33 @@ export class Question extends Component {
         this.props.onSelect(option);
     }
 
+    getOptionIconClass = (option) => {
+        let iconClass = 'fa ';  
+        if (this.props.showAnswer && this.isCorrect(option)) {
+            iconClass += 'fa-check' 
+        } else if (this.props.showAnswer) {
+            iconClass += 'fa-times' 
+        } else if (this.isSelected(option)) {
+            iconClass += 'fa-square';
+        } else {
+            iconClass += 'fa-square-o';
+        }
+
+        return iconClass;
+    }
+
     getOptionElements = (options) => {
         let optionElements = [];
         for (var i = 0; i < options.length; i++) {
             let option = options[i];
-            let isSelected = false;
-            if (this.props.selected && this.props.selected.value === option.value) {
-                isSelected = true;
-            }
+            
             optionElements.push(
                 <Option
                     option={option}
                     onClick={this.handleSelection}
-                    isSelected={isSelected}
-                    isCorrect={this.isCorrect(option)}
+                    isSelectedAnswer={this.isSelectedAnswer(option)}
+                    disabled={this.isDisabled(option)}
+                    iconClass={this.getOptionIconClass(option)}
                     key={i}
                 />
             );
