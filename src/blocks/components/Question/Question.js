@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Content from './Content/Content'
 import Option from './Option/Option';
 import './Question.css';
 
@@ -76,6 +77,11 @@ export class Question extends Component {
                 <div className="question-prompt">
                     {question.prompt}
                 </div>
+                {question.content ? 
+                    <div className="question-content">
+                        <Content type={question.content.type} options={question.content.options}/>
+                    </div>
+                : null}
                 <div className="question-options">
                     {this.getOptionElements(question.options)}
                 </div>

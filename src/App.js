@@ -4,10 +4,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import KnowledgeCheck from './blocks/KnowledgeCheck';
 import './App.css';
 
-import {
-  SimpleQuestionaire,
-  SimpleQuestionaireAnswer
-} from './MockData';
+import { SimpleQuestionaire } from './MockData';
 
 class App extends Component {
   render() {
@@ -17,10 +14,12 @@ class App extends Component {
           <h1 className="App-title">Knowledge Check Demo</h1>
         </header>
         <div className="App-intro">
-          <KnowledgeCheck
-            questionaire={SimpleQuestionaire}
-            correctOption={SimpleQuestionaireAnswer}
-          />
+          {SimpleQuestionaire.questions.map((question) => {
+            return <KnowledgeCheck
+                      question={question}
+                      correctOption={question.correctOption}
+                    />
+          })}
         </div>
       </div>
     );

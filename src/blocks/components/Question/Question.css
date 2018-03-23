@@ -6,3 +6,10 @@
 .question-prompt {
     margin-bottom: .5rem;
 }
+
+.question-content {
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px #eee solid;
+    text-align: center;
+}

@@ -31,8 +31,8 @@ export default class KnowledgeCheck extends Component {
             return (
                 <Feedback
                     isCorrect={isCorrect}
-                    hint={this.props.questionaire.questions[0].hint}
-                    correctMessage={this.props.questionaire.questions[0].correctMessage}
+                    hint={this.props.question.hint}
+                    correctMessage={this.props.question.correctMessage}
                     onReset={this.handleReset}
                 />
             );
@@ -61,14 +61,12 @@ export default class KnowledgeCheck extends Component {
     }
 
     render = () => {
-        const questionaire = this.props.questionaire;
-
         return (
             <div className="knowledge-check-container">
                 <div className="knowledge-check-box">
                     <div className="knowledge-check-body">
                         <Question
-                            question={questionaire.questions[0]}
+                            question={this.props.question}
                             selectedOption={this.state.selectedOption}
                             correctOption={this.props.correctOption}
                             showAnswer={this.state.showAnswer}

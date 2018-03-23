@@ -35,4 +35,5 @@
 .feedback > .retry {
     padding-top: 2rem;
     font-size: 0.75rem;
+    cursor: pointer;
 }
