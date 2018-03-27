@@ -9,7 +9,7 @@ export let Feedback = (props) => {
         } else {
             return props.hint;
         }
-    }
+    };
 
     const getIndicatorClass = () => {
         if (props.isCorrect) {
@@ -17,13 +17,13 @@ export let Feedback = (props) => {
         } else {
             return 'fa fa-times';
         }
-    }
+    };
 
     const triggerReset = () => {
         if (typeof props.onReset === 'function') {
             props.onReset();
         }
-    }
+    };
 
     let status;
     if (props.isCorrect) {
@@ -51,4 +51,4 @@ export let Feedback = (props) => {
             </div>
         </div>
     );
-}
+};

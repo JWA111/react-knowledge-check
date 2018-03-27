@@ -1,7 +1,7 @@
 import React from 'react';
 import 'font-awesome/css/font-awesome.min.css';
 
-import KnowledgeCheck from './blocks/KnowledgeCheck';
+import KnowledgeCheck from './components/knowledge-check/KnowledgeCheck';
 import './App.css';
 
 import { SimpleQuestionaire } from './MockData';
@@ -22,6 +22,6 @@ let App = () => {
       </div>
     </div>
   );
-}
+};
 
 export default App;

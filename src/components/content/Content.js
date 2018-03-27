@@ -3,7 +3,7 @@ import YouTube from 'react-youtube';
 
 import './Content.css';
 
-let Content = (props) => {
+export let Content = (props) => {
     if (props.type === 'youtube') {
         return (
             <YouTube
@@ -16,6 +16,4 @@ let Content = (props) => {
     } else {
         return null;
     }
-}
-
-export default Content;
+};

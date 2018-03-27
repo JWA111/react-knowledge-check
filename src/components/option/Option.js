@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Option.css';
 
-let Option = (props) => {
+export let Option = (props) => {
     let optionClass = 'option';
     if (!props.disabled) {
         optionClass += ' allow-hover'
@@ -26,5 +26,4 @@ let Option = (props) => {
             <i className={props.iconClass}/>{props.option.text}
         </div>
     );
-} 
-export default Option;
+};

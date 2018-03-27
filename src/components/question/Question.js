@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Content from './Content/Content'
-import Option from './Option/Option';
+import { Content } from '../content/Content';
+import { Option } from '../option/Option';
 import './Question.css';
 
 export let Question = (props) => {
     const isCorrect = (option) => {
         return props.correctOption.value === option.value;
-    }
+    };
 
     const isSelected = (option) => {
         let selected = false;
@@ -16,23 +16,23 @@ export let Question = (props) => {
         }
 
         return selected;
-    }
+    };
 
     const isSelectedAnswer = (option) => {
         return props.showAnswer && isSelected(option);
-    }
+    };
 
-    const isDisabled = (option) => {
+    const isDisabled = () => {
         if (props.showAnswer) {
             return true;
         } else {
             return false;
         }
-    }
+    };
 
     const handleSelection = (option) => {
         props.onSelect(option);
-    }
+    };
 
     const getOptionIconClass = (option) => {
         let iconClass = 'fa ';  
@@ -47,11 +47,11 @@ export let Question = (props) => {
         }
 
         return iconClass;
-    }
+    };
 
     const getOptionElements = (options) => {
         let optionElements = [];
-        for (var i = 0; i < options.length; i++) {
+        for (let i = 0; i < options.length; i++) {
             let option = options[i];
             
             optionElements.push(
@@ -59,7 +59,7 @@ export let Question = (props) => {
                     option={option}
                     onClick={handleSelection}
                     isSelectedAnswer={isSelectedAnswer(option)}
-                    disabled={isDisabled(option)}
+                    disabled={isDisabled()}
                     iconClass={getOptionIconClass(option)}
                     key={i}
                 />
@@ -67,7 +67,7 @@ export let Question = (props) => {
         }
 
         return optionElements;
-    }
+    };
 
     const question = props.question;
 
@@ -86,4 +86,4 @@ export let Question = (props) => {
             </div>
         </div>
     );
-}
+};

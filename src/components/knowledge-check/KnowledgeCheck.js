@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 
-import {
-    Feedback,
-    Question
-} from './components';
-
+import { Question } from '../question/Question';
+import { Feedback } from '../feedback/Feedback';
 import './KnowledgeCheck.css';
 
 export default class KnowledgeCheck extends Component {
@@ -37,28 +34,28 @@ export default class KnowledgeCheck extends Component {
                 />
             );
         }
-    }
+    };
 
     handleReset = () => {
         this.setState({
             selectedOption: null,
             showAnswer: false
         });
-    }
+    };
 
     handleSelection = (option) => {
         this.setState((state) => {
             state.selectedOption = option;
             return state;
         })
-    }
+    };
 
     handleSubmit = () => {
         this.setState((state) => {
             state.showAnswer = true;
             return state;
         });
-    }
+    };
 
     render = () => {
         return (
